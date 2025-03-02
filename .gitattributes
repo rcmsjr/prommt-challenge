@@ -1,0 +1,22 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Treat shell scripts as text and ensure LF line endings
+*.sh text eol=lf
+
+# Treat bat scripts as text and ensure LF line endings
+*.{bat,[bB][aA][tT]} text eol=crlf
+
+# Ignore line-ending normalization for binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.jar binary
+*.exe binary
+
+# Ignore line-ending normalization for Node modules
+node_modules/** binary

@@ -1,0 +1,51 @@
+# IntelliJ & VS Code
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs & Temporary Files
+*.log
+npm-debug.log*
+logs
+
+# JS build files
+node_modules/
+dist/
+.cache
+.angular
+
+# Spring Boot (backend)
+apps/payment-service/target/
+apps/payment-service/.mvn/
+apps/payment-service/mvnw
+apps/payment-service/mvnw.cmd
+apps/payment-service/.classpath
+apps/payment-service/.project
+apps/payment-service/.settings/
+
+# Java Dependencies & Build files
+.gradle/
+build/
+
+# Secrets & Credentials
+.env
+*.env.local
+*.env.development
+*.env.production
+secrets/
+config/application.properties
+config/application.yml
+config/application-dev.properties
+config/application-dev.yml
+
+# Git / CI / Debugging
+.git/
+*.swp
+*.swo
+coverage/
+cypress/screenshots/
+cypress/videos/
+tests-output/
