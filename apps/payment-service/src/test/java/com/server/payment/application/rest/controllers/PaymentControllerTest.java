@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Import;
 import java.util.Collections;
 import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -70,8 +70,8 @@ public class PaymentControllerTest {
     @Test
     public void testGetPaymentById() throws Exception {
         PaymentEntity returnPayment = new PaymentEntity();
-        returnPayment.setId(1L);
-        when(paymentService.getById(anyLong())).thenReturn(returnPayment);
+        returnPayment.setId(1);
+        when(paymentService.getById(anyInt())).thenReturn(returnPayment);
 
         mockMvc.perform(get("/payments/1"))
                 .andExpect(status().isOk())
@@ -82,7 +82,7 @@ public class PaymentControllerTest {
     public void testUpdatePaymentStatusById() throws Exception {
         SavePaymentResponse response = new SavePaymentResponse();
 
-        when(paymentService.updateStatusById(anyLong(), any())).thenReturn(new PaymentEntity());
+        when(paymentService.updateStatusById(anyInt(), any())).thenReturn(new PaymentEntity());
 
         mockMvc.perform(patch("/payments/1/pay"))
                 .andExpect(status().isOk())

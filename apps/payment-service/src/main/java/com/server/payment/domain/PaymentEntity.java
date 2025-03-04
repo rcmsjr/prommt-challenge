@@ -12,15 +12,15 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentEntity {
-    private Long id;
-    private Date createdAt;
-    private Date paidAt;
+    private Integer id;
     private String payerEmail;
-    private Status status;
     private String currency;
     private Integer amount;
+    private Status status;
+    private Date createdAt;
+    private Date paidAt;
 
     public static enum Status {
-        PENDING,PAID, FAILED
+        PENDING, PAID, FAILED
     }
 }

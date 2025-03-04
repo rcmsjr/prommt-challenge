@@ -47,20 +47,20 @@ public class PaymentController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public PaymentEntity getPaymentById(@PathVariable Long id) {
+    public PaymentEntity getPaymentById(@PathVariable Integer id) {
         return paymentService.getById(id);
     }
 
     @PatchMapping("/{id}/pay")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public SavePaymentResponse updatePaymentStatusById(@PathVariable Long id) {
+    public SavePaymentResponse updatePaymentStatusById(@PathVariable Integer id) {
         return new SavePaymentResponse().applyResult(paymentService.updateStatusById(id, PaymentEntity.Status.PAID));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deletePaymentById(@PathVariable Long id) {
+    public void deletePaymentById(@PathVariable Integer id) {
         paymentService.deleteById(id);
     }
 }

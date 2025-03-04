@@ -17,7 +17,7 @@ public class SavePaymentResponseTest {
     @Test
     public void testApplyResult() {
         PaymentEntity payment = new PaymentEntity();
-        payment.setId(1L);
+        payment.setId(1);
 
         savePaymentResponse.applyResult(payment);
 
@@ -34,7 +34,7 @@ public class SavePaymentResponseTest {
     @Test
     public void testApplyResultWithNegativeId() {
         PaymentEntity payment = new PaymentEntity();
-        payment.setId(-1L);
+        payment.setId(-1);
 
         savePaymentResponse.applyResult(payment);
 
