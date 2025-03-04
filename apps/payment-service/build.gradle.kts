@@ -32,7 +32,16 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
+	// Spring Boot Test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	// Mockito
+	testImplementation("org.mockito:mockito-core")
+	testImplementation("org.mockito:mockito-junit-jupiter")
+
+	// JSON Path for JSON assertions
+	testImplementation("com.jayway.jsonpath:json-path")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
