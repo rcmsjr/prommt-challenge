@@ -1,6 +1,6 @@
 package com.server.payment.application.rest.responses;
 
-import com.server.payment.domain.Payment;
+import com.server.payment.domain.PaymentEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +16,7 @@ public class SavePaymentResponseTest {
 
     @Test
     public void testApplyResult() {
-        Payment payment = new Payment();
+        PaymentEntity payment = new PaymentEntity();
         payment.setId(1L);
 
         savePaymentResponse.applyResult(payment);
@@ -33,7 +33,7 @@ public class SavePaymentResponseTest {
 
     @Test
     public void testApplyResultWithNegativeId() {
-        Payment payment = new Payment();
+        PaymentEntity payment = new PaymentEntity();
         payment.setId(-1L);
 
         savePaymentResponse.applyResult(payment);

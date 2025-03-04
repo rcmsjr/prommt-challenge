@@ -1,6 +1,6 @@
 package com.server.payment.application.rest.requests;
 
-import com.server.payment.domain.Payment;
+import com.server.payment.domain.PaymentEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -89,11 +89,11 @@ public class CreatePaymentRequestTest {
         request.setCurrency("USD");
         request.setAmount(100);
 
-        Payment payment = request.toDomainEntity();
+        PaymentEntity payment = request.toDomainEntity();
 
         assertEquals("valid.email@example.com", payment.getPayerEmail());
         assertEquals("USD", payment.getCurrency());
         assertEquals(100, payment.getAmount());
-        assertEquals(Payment.Status.PENDING, payment.getStatus());
+        assertEquals(PaymentEntity.Status.PENDING, payment.getStatus());
     }
 }

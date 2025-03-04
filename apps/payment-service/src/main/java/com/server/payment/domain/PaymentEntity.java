@@ -11,7 +11,7 @@ import java.util.Date;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payment {
+public class PaymentEntity {
     private Long id;
     private Date createdAt;
     private Date paidAt;

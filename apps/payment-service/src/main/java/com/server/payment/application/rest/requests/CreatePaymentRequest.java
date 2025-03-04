@@ -1,6 +1,6 @@
 package com.server.payment.application.rest.requests;
 
-import com.server.payment.domain.Payment;
+import com.server.payment.domain.PaymentEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,12 +29,12 @@ public class CreatePaymentRequest {
     @Positive(message = "Amount must be greater than 0 cents")
     private Integer amount;
 
-    public Payment toDomainEntity() {
-        Payment payment = new Payment();
+    public PaymentEntity toDomainEntity() {
+        PaymentEntity payment = new PaymentEntity();
         payment.setPayerEmail(this.payerEmail);
         payment.setCurrency(this.currency);
         payment.setAmount(this.amount);
-        payment.setStatus(Payment.Status.PENDING);
+        payment.setStatus(PaymentEntity.Status.PENDING);
         return payment;
     }
 }

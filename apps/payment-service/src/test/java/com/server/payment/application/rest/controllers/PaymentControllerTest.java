@@ -2,7 +2,7 @@ package com.server.payment.application.rest.controllers;
 
 import com.server.payment.application.rest.requests.CreatePaymentRequest;
 import com.server.payment.application.rest.responses.SavePaymentResponse;
-import com.server.payment.domain.Payment;
+import com.server.payment.domain.PaymentEntity;
 import com.server.payment.domain.PaymentService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -49,7 +49,7 @@ public class PaymentControllerTest {
         CreatePaymentRequest request = new CreatePaymentRequest();
         SavePaymentResponse response = new SavePaymentResponse();
 
-        when(paymentService.create(any())).thenReturn(new Payment());
+        when(paymentService.create(any())).thenReturn(new PaymentEntity());
 
         mockMvc.perform(post("/payments")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -60,7 +60,7 @@ public class PaymentControllerTest {
 
     @Test
     public void testFetchPayments() throws Exception {
-        when(paymentService.fetch()).thenReturn(Collections.singletonList(new Payment()));
+        when(paymentService.fetch()).thenReturn(Collections.singletonList(new PaymentEntity()));
 
         mockMvc.perform(get("/payments"))
                 .andExpect(status().isOk())
@@ -69,7 +69,7 @@ public class PaymentControllerTest {
 
     @Test
     public void testGetPaymentById() throws Exception {
-        Payment returnPayment = new Payment();
+        PaymentEntity returnPayment = new PaymentEntity();
         returnPayment.setId(1L);
         when(paymentService.getById(anyLong())).thenReturn(returnPayment);
 
@@ -82,7 +82,7 @@ public class PaymentControllerTest {
     public void testUpdatePaymentStatusById() throws Exception {
         SavePaymentResponse response = new SavePaymentResponse();
 
-        when(paymentService.updateStatusById(anyLong(), any())).thenReturn(new Payment());
+        when(paymentService.updateStatusById(anyLong(), any())).thenReturn(new PaymentEntity());
 
         mockMvc.perform(patch("/payments/1/pay"))
                 .andExpect(status().isOk())

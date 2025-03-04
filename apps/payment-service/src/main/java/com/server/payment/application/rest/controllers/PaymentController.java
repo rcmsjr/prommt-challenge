@@ -40,14 +40,14 @@ public class PaymentController {
     @GetMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public List<Payment> fetchPayments() {
+    public List<PaymentEntity> fetchPayments() {
         return paymentService.fetch();
     }
 
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public Payment getPaymentById(@PathVariable Long id) {
+    public PaymentEntity getPaymentById(@PathVariable Long id) {
         return paymentService.getById(id);
     }
 
@@ -55,7 +55,7 @@ public class PaymentController {
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
     public SavePaymentResponse updatePaymentStatusById(@PathVariable Long id) {
-        return new SavePaymentResponse().applyResult(paymentService.updateStatusById(id, Payment.Status.PAID));
+        return new SavePaymentResponse().applyResult(paymentService.updateStatusById(id, PaymentEntity.Status.PAID));
     }
 
     @DeleteMapping("/{id}")

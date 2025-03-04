@@ -1,6 +1,6 @@
 package com.server.payment.application.rest.responses;
 
-import com.server.payment.domain.Payment;
+import com.server.payment.domain.PaymentEntity;
 
 import lombok.NoArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ public class SavePaymentResponse {
     @Getter
     public String url;
 
-    public SavePaymentResponse applyResult(Payment result) {
+    public SavePaymentResponse applyResult(PaymentEntity result) {
         this.url = "http://localhost:8080/payments/" + result.getId();
         return this;
     }
