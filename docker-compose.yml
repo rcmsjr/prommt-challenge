@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  payment-service:
+    image: openjdk:17-jdk-slim
+    container_name: payment-service
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./apps/payment-service:/app
+    working_dir: /app
+    command: ./gradlew bootRun
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
