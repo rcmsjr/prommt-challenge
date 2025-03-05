@@ -45,6 +45,11 @@ public class PaymentService implements IPaymentService {
     }
 
     public void deleteById(Integer id) {
+        Optional<PaymentEntity> paymentOptional = paymentRepository.findById(id);
+        if (!paymentOptional.isPresent()) {
+            throw new ResourceNotFoundException("Payment not found");
+        }
+
         paymentRepository.deleteById(id);
     }
 }
