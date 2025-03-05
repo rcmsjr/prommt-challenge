@@ -5,6 +5,7 @@ import com.server.payment.application.rest.responses.SavePaymentResponse;
 import com.server.payment.domain.*;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,20 +48,20 @@ public class PaymentController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public PaymentEntity getPaymentById(@PathVariable Integer id) {
+    public PaymentEntity getPaymentById(@PathVariable @Positive Integer id) {
         return paymentService.getById(id);
     }
 
     @PatchMapping("/{id}/pay")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public SavePaymentResponse updatePaymentStatusById(@PathVariable Integer id) {
+    public SavePaymentResponse updatePaymentStatusById(@PathVariable @Positive Integer id) {
         return new SavePaymentResponse().applyResult(paymentService.updateStatusById(id, PaymentEntity.Status.PAID));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deletePaymentById(@PathVariable Integer id) {
+    public void deletePaymentById(@PathVariable @Positive Integer id) {
         paymentService.deleteById(id);
     }
 }
