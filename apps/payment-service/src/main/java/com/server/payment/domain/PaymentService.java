@@ -40,6 +40,10 @@ public class PaymentService implements IPaymentService {
         }
 
         PaymentEntity payment = paymentOptional.get();
+        if (payment.getStatus() == Status.PAID) {
+            throw new BusinessRuleException("Paid payments cannot be updated");
+        }
+
         payment.setStatus(paymentStatus);
         payment.setPaidAt(paymentStatus == Status.PAID ? new Date() : null);
         return paymentRepository.save(payment);
