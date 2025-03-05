@@ -1,7 +1,8 @@
 package com.server.payment.domain;
 
 import com.server.payment.domain.PaymentEntity.Status;
-import com.server.payment.domain.ResourceNotFoundException;
+import com.server.payment.domain.exceptions.BusinessRuleException;
+import com.server.payment.domain.exceptions.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,11 @@ public class PaymentService implements IPaymentService {
         Optional<PaymentEntity> paymentOptional = paymentRepository.findById(id);
         if (!paymentOptional.isPresent()) {
             throw new ResourceNotFoundException("Payment not found");
+        }
+
+        PaymentEntity payment = paymentOptional.get();
+        if (payment.getStatus() == Status.PAID) {
+            throw new BusinessRuleException("Paid payments cannot be deleted");
         }
 
         paymentRepository.deleteById(id);

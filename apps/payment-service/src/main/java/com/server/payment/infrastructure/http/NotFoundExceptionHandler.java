@@ -1,6 +1,6 @@
 package com.server.payment.infrastructure.http;
 
-import com.server.payment.domain.ResourceNotFoundException;
+import com.server.payment.domain.exceptions.ResourceNotFoundException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

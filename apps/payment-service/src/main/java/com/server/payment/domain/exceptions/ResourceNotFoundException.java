@@ -1,4 +1,4 @@
-package com.server.payment.domain;
+package com.server.payment.domain.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
