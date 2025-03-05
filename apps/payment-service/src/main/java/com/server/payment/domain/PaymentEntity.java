@@ -11,7 +11,7 @@ import java.util.Date;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentEntity {
+public class PaymentEntity implements Cloneable {
     private Integer id;
     private String payerEmail;
     private String currency;
@@ -22,5 +22,14 @@ public class PaymentEntity {
 
     public static enum Status {
         PENDING, PAID, FAILED
+    }
+
+    @Override
+    public PaymentEntity clone() {
+        try {
+            return (PaymentEntity) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Can't happen
+        }
     }
 }
