@@ -27,12 +27,12 @@ public class PaymentService implements IPaymentService {
         return paymentRepository.findAll();
     }
 
-    public PaymentEntity getById(Integer id) throws ResourceNotFoundException {
+    public PaymentEntity getById(Integer id) {
         Optional<PaymentEntity> payment = paymentRepository.findById(id);
         return payment.orElseThrow(() -> new ResourceNotFoundException("Payment not found"));
     }
 
-    public PaymentEntity updateStatusById(Integer id, Status paymentStatus) throws ResourceNotFoundException {
+    public PaymentEntity updateStatusById(Integer id, Status paymentStatus) {
         Optional<PaymentEntity> paymentOptional = paymentRepository.findById(id);
         if (!paymentOptional.isPresent()) {
             throw new ResourceNotFoundException("Payment not found");
