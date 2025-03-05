@@ -1,72 +1,48 @@
 package com.server.payment.domain;
 
 import com.server.payment.domain.PaymentEntity.Status;
+import com.server.payment.domain.ResourceNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Random;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class PaymentService implements IPaymentService {
 
+    private final IPaymentRepository paymentRepository;
+
+    @Autowired
+    public PaymentService(IPaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
+    }
+
     public PaymentEntity create(PaymentEntity payment) {
-        Random random = new Random();
-        Integer paymentId = random.nextInt(1000000); // Generates a random payment ID between 0 and 999999
-        payment.setId(paymentId);
-        return payment;
+        return paymentRepository.save(payment);
     }
 
     public List<PaymentEntity> fetch() {
-        // Placeholder for implementation to retrieve all payments
-        List<PaymentEntity> payments = new ArrayList<>();
-        Random random = new Random();
-        int randomNumber = 3 + random.nextInt(7); // Generates a random number between 3 and 9
-        for (int i = 0; i < randomNumber; i++) {
-            PaymentEntity payment = new PaymentEntity();
-            payment.setId(random.nextInt(1000000)); // Generates a random payment ID between 0 and 999999
-            payment.setPayerEmail(payment.getId() + "@email.com");
-            payment.setStatus(i % 2 == 0 ? PaymentEntity.Status.PAID : PaymentEntity.Status.PENDING);
-            payment.setCurrency("EUR");
-            payment.setAmount(i * 100);
-            payment.setCreatedAt(new java.util.Date());
-            if (i % 2 == 0) {
-                payment.setPaidAt(new java.util.Date());
-            }
-            payments.add(payment);
-        }
-        return payments;
+        return paymentRepository.findAll();
     }
 
-    public PaymentEntity getById(Integer id) {
-        // Placeholder for implementation to retrieve a payment by its ID
-        PaymentEntity payment = new PaymentEntity();
-        payment.setId(id);
-        payment.setPayerEmail("rcmsjr@gmail.com");
-        payment.setStatus(id % 2 == 0 ? PaymentEntity.Status.PAID : PaymentEntity.Status.PENDING);
-        payment.setCurrency("EUR");
-        payment.setAmount(100);
-        payment.setCreatedAt(new java.util.Date());
-        if (id % 2 == 0) {
-            payment.setPaidAt(new java.util.Date());
-        }
-        return payment;
+    public PaymentEntity getById(Integer id) throws ResourceNotFoundException {
+        Optional<PaymentEntity> payment = paymentRepository.findById(id);
+        return payment.orElseThrow(() -> new ResourceNotFoundException("Payment not found"));
     }
 
-    public PaymentEntity updateStatusById(Integer id, Status paymentStatust) {
-        // Placeholder for implementation to update a payment
-        PaymentEntity payment = new PaymentEntity();
-        payment.setId(id);
-        payment.setPayerEmail("rcmsjr@gmail.com");
-        payment.setStatus(paymentStatust);
-        payment.setCurrency("EUR");
-        payment.setAmount(100);
-        payment.setCreatedAt(new java.util.Date());
-        return payment;
+    public PaymentEntity updateStatusById(Integer id, Status paymentStatus) throws ResourceNotFoundException {
+        Optional<PaymentEntity> paymentOptional = paymentRepository.findById(id);
+        if (!paymentOptional.isPresent()) {
+            throw new ResourceNotFoundException("Payment not found");
+        }
+
+        PaymentEntity payment = paymentOptional.get();
+        payment.setStatus(paymentStatus);
+        return paymentRepository.save(payment);
     }
 
     public void deleteById(Integer id) {
-        // Placeholder for implementation to delete a payment by its ID
-        System.out.println("PaymentEntity with ID " + id + " has been deleted.");
+        paymentRepository.deleteById(id);
     }
 }
