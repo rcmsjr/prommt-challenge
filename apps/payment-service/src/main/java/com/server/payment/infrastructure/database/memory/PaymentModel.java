@@ -33,6 +33,13 @@ public class PaymentModel {
     @Column(name = "paid_date")
     private Date paidDate;
 
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdDate == null) {
+            this.createdDate = new Date();
+        }
+    }
+
     public PaymentEntity toDomainEntity() {
         PaymentEntity payment = new PaymentEntity();
         payment.setId(this.id);
