@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
 @Service
 public class PaymentService implements IPaymentService {
@@ -39,6 +40,7 @@ public class PaymentService implements IPaymentService {
 
         PaymentEntity payment = paymentOptional.get();
         payment.setStatus(paymentStatus);
+        payment.setPaidAt(paymentStatus == Status.PAID ? new Date() : null);
         return paymentRepository.save(payment);
     }
 
