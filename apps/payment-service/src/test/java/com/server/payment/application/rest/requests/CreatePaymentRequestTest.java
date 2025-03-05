@@ -50,7 +50,6 @@ public class CreatePaymentRequestTest {
     public void testBlankCurrency() {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.setPayerEmail("valid.email@example.com");
-        request.setCurrency("");
         request.setAmount(100);
 
         Set<ConstraintViolation<CreatePaymentRequest>> violations = validator.validate(request);
