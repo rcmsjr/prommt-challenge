@@ -1,0 +1,12 @@
+{
+  "name": "prommt-challenge",
+  "version": "1.0.0",
+  "description": "Mono-repo root",
+  "scripts": {},
+  "keywords": [],
+  "author": "Roberto Souza <rcmsjr@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cli": "^19.2.0"
+  }
+}
