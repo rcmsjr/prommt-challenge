@@ -67,7 +67,7 @@ root/
 - 🧩 Service-Oriented Architecture (SOA) – Modular and scalable services.
 - 📦 Domain-Driven Design (DDD) – Focused on business logic.
 
-## Run tests inside a Docker container
+## How to Run Backend Tests
 First, make sure you run the Docker command from the root folder of the mono-repo.
 ```
 docker run --rm \
@@ -79,13 +79,15 @@ docker run --rm \
 
 Alternative: Run tests with Docker Compose
 ```
-docker-compose run --rm payment-service-test
+docker-compose run --rm payment-service ./gradlew test
 ```
 
 ## How to Run Locally?
 
 ```sh
-docker-compose up -d
+> docker-compose build
+> docker-compose run --rm frontend npm install
+> docker-compose up -d
 ```
 - Frontend → [http://localhost:4200](http://localhost:4200)
 - Backend → [http://localhost:8080](http://localhost:8080)
