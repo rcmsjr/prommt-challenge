@@ -1,0 +1,52 @@
+.payment-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.payment-item {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--gray-400);
+  border-radius: 0.5rem;
+  background-color: #fff;
+
+  .payment-description {
+    font-size: 1rem;
+    color: var(--gray-900);
+  }
+
+  &>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .payment-amount {
+      font-size: 1rem;
+      color: var(--gray-900);
+    }
+
+    .payment-status {
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .payment-status.paid {
+      background-color: var(--bright-blue);
+      color: #fff;
+    }
+
+    .payment-status.pending {
+      background-color: var(--gray-400);
+      color: #fff;
+    }
+
+    .payment-status.failed {
+      background-color: var(--hot-red);
+      color: #fff;
+    }
+  }
+}
