@@ -68,7 +68,7 @@ root/
 - 📦 Domain-Driven Design (DDD) – Focused on business logic.
 
 ## Run tests inside a Docker container
-First off all, ensure you are running the Docker command on mono-repo root folder.
+First, make sure you run the Docker command from the root folder of the mono-repo.
 ```
 docker run --rm \
   -v "$(pwd)/apps/payment-service:/app" \
