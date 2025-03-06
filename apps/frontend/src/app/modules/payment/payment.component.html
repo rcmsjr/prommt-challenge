@@ -171,7 +171,7 @@
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
-        <a class="pill" rel="noopener">
+        <a class="pill" rel="noopener" (click)="toggleForm()">
           <span>Create a Payment</span>
         </a>
         <a
@@ -183,7 +183,8 @@
           <span>Pay Now</span>
         </a>
       </div>
-      <app-payment-details [inputPayment]="selectedPayment"></app-payment-details>
+      <app-payment-form *ngIf="isFormVisible" (paymentCreated)="loadPayments()"></app-payment-form>
+      <app-payment-details *ngIf="!isFormVisible" [inputPayment]="selectedPayment"></app-payment-details>
       <router-outlet />
     </div>
   </div>
