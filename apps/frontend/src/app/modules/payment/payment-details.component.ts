@@ -51,7 +51,7 @@ export class PaymentDetailsComponent implements OnChanges {
     try {
       this.payment = await this.paymentService.getById(id);
     } catch (error) {
-      console.error('Failed to load payments', error);
+      console.error('Failed to load payment', error);
     }
   }
 

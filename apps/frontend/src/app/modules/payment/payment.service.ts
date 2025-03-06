@@ -48,7 +48,7 @@ export class PaymentService {
 
   async delete(id: number): Promise<void> {
     try {
-      const response = await axiosInstance.delete(`/payments/${id}/pay`);
+      await axiosInstance.delete(`/payments/${id}`);
     } catch (error) {
       console.error('Error deleting payment:', error);
       throw error;

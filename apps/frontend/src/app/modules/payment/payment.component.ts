@@ -42,7 +42,17 @@ export class PaymentComponent implements OnInit {
       await this.paymentService.pay(payment.id);
       this.loadPayments();
     } catch (error) {
-      console.error('Failed to load payments', error);
+      console.error('Failed to pay payment', error);
+    }
+  }
+
+  async deletePayment(payment: IPayment) {
+    try {
+      await this.paymentService.delete(payment.id);
+      await this.loadPayments();
+      this.selectPayment(this.payments[0])
+    } catch (error) {
+      console.error('Failed to delete payment', error);
     }
   }
 
