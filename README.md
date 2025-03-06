@@ -77,6 +77,11 @@ docker run --rm \
   ./gradlew test
 ```
 
+Alternative: Run tests with Docker Compose
+```
+docker-compose run --rm payment-service-test
+```
+
 ## How to Run Locally?
 
 ```sh
