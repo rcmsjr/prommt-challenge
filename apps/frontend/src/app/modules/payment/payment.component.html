@@ -107,6 +107,7 @@
     line-height: 1.4rem;
     letter-spacing: -0.00875rem;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .pill:hover {
@@ -173,7 +174,12 @@
         <a class="pill" rel="noopener">
           <span>Create a Payment</span>
         </a>
-        <a *ngIf="selectedPayment && selectedPayment.status === 'PENDING'" class="pill" rel="noopener">
+        <a
+          *ngIf="selectedPayment && selectedPayment.status === 'PENDING'"
+          class="pill"
+          rel="noopener"
+          (click)="payNow(selectedPayment)"
+        >
           <span>Pay Now</span>
         </a>
       </div>

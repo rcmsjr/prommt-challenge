@@ -30,6 +30,15 @@ export class PaymentComponent implements OnInit {
     }
   }
 
+  async payNow(payment: IPayment) {
+    try {
+      await this.paymentService.pay(payment.id);
+      this.loadPayments();
+    } catch (error) {
+      console.error('Failed to load payments', error);
+    }
+  }
+
   selectPayment(payment: IPayment) {
     this.selectedPayment = payment;
   }
