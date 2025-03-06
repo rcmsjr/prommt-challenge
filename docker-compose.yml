@@ -20,3 +20,5 @@ services:
     working_dir: /app
     command: ["./gradlew", "test"]
     restart: "no"
+    tmpfs:
+      - /tmp
