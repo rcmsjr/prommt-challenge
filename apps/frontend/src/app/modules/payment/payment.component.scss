@@ -1,7 +1,13 @@
+.left-side, .right-side {
+  min-width: 300px;
+  padding: 10px;
+}
+
 .payment-list {
   list-style: none;
   padding: 0;
   margin: 1.5rem 0;
+  cursor: pointer;
 }
 
 .payment-item {

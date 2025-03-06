@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { PaymentService } from './payment.service';
 import { IPayment } from './payment.interface';
+import { PaymentDetailsComponent } from './payment-details.component';
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, PaymentDetailsComponent],
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
   payments: IPayment[] = [];
+  selectedPayment: IPayment | null = null;
 
   constructor(private paymentService: PaymentService) {}
 
@@ -26,5 +28,13 @@ export class PaymentComponent implements OnInit {
     } catch (error) {
       console.error('Failed to load payments', error);
     }
+  }
+
+  selectPayment(payment: IPayment) {
+    this.selectedPayment = payment;
+  }
+
+  formatAmount(amount: number): string {
+    return this.paymentService.formatAmount(amount);
   }
 }

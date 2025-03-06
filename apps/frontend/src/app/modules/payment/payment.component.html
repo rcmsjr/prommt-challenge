@@ -151,11 +151,13 @@
     <div class="left-side">
       <h1>Payments</h1>
       <ul class="payment-list">
-        <li *ngFor="let payment of payments" class="payment-item">
+        <li *ngFor="let payment of payments" class="payment-item" (click)="selectPayment(payment)">
           <span class="payment-description">{{ payment.payerEmail }}</span>
           <br />
           <div>
-            <span class="payment-amount">{{ payment.currency + ' ' + payment.amount }}</span>
+            <span class="payment-amount">
+              {{ payment.currency + ' ' + formatAmount(payment.amount) }}
+            </span>
             <span class="payment-status" [ngClass]="{
               'paid': payment.status === 'PAID',
               'pending': payment.status === 'PENDING',
@@ -171,9 +173,12 @@
         <a class="pill" rel="noopener">
           <span>Create a Payment</span>
         </a>
+        <a *ngIf="selectedPayment && selectedPayment.status === 'PENDING'" class="pill" rel="noopener">
+          <span>Pay Now</span>
+        </a>
       </div>
+      <app-payment-details [inputPayment]="selectedPayment"></app-payment-details>
+      <router-outlet />
     </div>
   </div>
 </main>
-
-<router-outlet />

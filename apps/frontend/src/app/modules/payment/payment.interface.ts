@@ -4,6 +4,8 @@ export interface IPayment {
   currency: string;
   amount: number;
   status: 'PENDING' | 'PAID' | 'FAILED';
+  createdAt: Date;
+  paidAt?: Date;
 }
 
 export interface IStoreResponse {

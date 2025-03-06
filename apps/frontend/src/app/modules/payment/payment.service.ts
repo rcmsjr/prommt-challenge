@@ -54,4 +54,8 @@ export class PaymentService {
       throw error;
     }
   }
+
+  formatAmount(amount: number): string {
+    return (amount / 100).toFixed(2);
+  }
 }
